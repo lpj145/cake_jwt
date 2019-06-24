@@ -9,20 +9,25 @@ The framework source code can be found here: [cakephp/cakephp](https://github.co
 
 ## Installation
 
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
+````bash
+git clone https://github.com/lpj145/cake_jwt.git my_app
+cd my_app
+composer update
+````
 
-If Composer is installed globally, run
+## Configure Env Vars
+Configure a database by env on config/.env or config/app.php file.
 
+## Migrations migrate
 ```bash
-composer create-project --prefer-dist cakephp/app
+bin/cake migrations migrate
 ```
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
-
+###Add first user
 ```bash
-composer create-project --prefer-dist cakephp/app myapp
+bin/cake create_user *name *lastname *username *password *phone ?role
 ```
+phone on future needed to  2fa implemented by nexmo.
 
 You can now either use your machine's webserver to view the default home page, or start
 up the built-in webserver with:
@@ -33,19 +38,26 @@ bin/cake server -p 8765
 
 Then visit `http://localhost:8765` to see the welcome page.
 
-## Update
+##Login
+On curl or other http client try ``POST`` to ``/api/login`` to obtain
+```json
+{
+    "token_type": "bearer",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiaWQiOiI4MzhkOTYyOC0xNGRiLTRmYTItYjZjMy0wMDU4NDk2ZDBlMTMiLCJyb2xlIjoidXNlciIsImFjdGl2ZSI6dHJ1ZX0sImV4cCI6MTU2MTQwNTUxNX0.TNRQbP2CllUgX58Fl-OI18CFl0QA_q8T8FZT7EgwrOg",
+    "token_expire": 1561405515,
+    "data": {
+        "id": "838d9628-14db-4fa2-b6c3-0058496d0e13",
+        "name": "Marcos",
+        "lastname": "Dantas",
+        "role": "user"
+    }
+}
+```
 
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
+###Login with jwt
+Try with http client, set ``Authorization`` header with ``Bearer ${token}`` ``POST`` to ``/api/ping``
 
 ## Configuration
 
 Read and edit `config/app.php` and setup the `'Datasources'` and any other
 configuration relevant for your application.
-
-## Layout
-
-The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) (v5) CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
