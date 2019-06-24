@@ -15,8 +15,10 @@ cd my_app
 composer update
 ````
 
-## Configure Env Vars
-Configure a database by env on config/.env or config/app.php file.
+## Configuration
+
+Read and edit `config/app.php` and setup the `'Datasources'` and any other
+configuration relevant for your application.
 
 ## Migrations migrate
 ```bash
@@ -55,9 +57,10 @@ On curl or other http client try ``POST`` to ``/api/login`` to obtain
 ```
 
 ### Login with jwt
-Try with http client, set ``Authorization`` header with ``Bearer ${token}`` ``POST`` to ``/api/ping``
+Try with http client, set ``Authorization`` header with ``Bearer ${token}`` ``POST`` to ``/api/ping`` to obtain
+```json
+{
+    "ack":1561406665
+}
+```
 
-## Configuration
-
-Read and edit `config/app.php` and setup the `'Datasources'` and any other
-configuration relevant for your application.
