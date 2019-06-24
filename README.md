@@ -23,7 +23,7 @@ Configure a database by env on config/.env or config/app.php file.
 bin/cake migrations migrate
 ```
 
-###Add first user
+### Add first user
 ```bash
 bin/cake create_user *name *lastname *username *password *phone ?role
 ```
@@ -38,7 +38,7 @@ bin/cake server -p 8765
 
 Then visit `http://localhost:8765` to see the welcome page.
 
-##Login
+### Login
 On curl or other http client try ``POST`` to ``/api/login`` to obtain
 ```json
 {
@@ -54,7 +54,7 @@ On curl or other http client try ``POST`` to ``/api/login`` to obtain
 }
 ```
 
-###Login with jwt
+### Login with jwt
 Try with http client, set ``Authorization`` header with ``Bearer ${token}`` ``POST`` to ``/api/ping``
 
 ## Configuration
