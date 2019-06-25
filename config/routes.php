@@ -104,6 +104,8 @@ Router::scope('/', function (RouteBuilder $routes) {
  */
 
 Router::prefix('api', function(RouteBuilder $routes) {
+    $routes->registerMiddleware('bodyparse', new \Cake\Http\Middleware\BodyParserMiddleware());
+    $routes->applyMiddleware('bodyparse');
     $routes->post('/login', ['controller' => 'Users', 'action' => 'login']);
     $routes->get('/ping', ['controller' => 'Users', 'action' => 'ping']);
 });

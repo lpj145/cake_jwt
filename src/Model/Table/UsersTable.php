@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\User;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -47,6 +48,13 @@ class UsersTable extends Table
 
         $this->saveOrFail($entity);
         return $entity;
+    }
+
+    public function updateUserToken(User $user, string $token)
+    {
+        $user->token = $token;
+        $this->saveOrFail($user);
+        return $user;
     }
 
     /**

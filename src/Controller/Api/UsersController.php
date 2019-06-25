@@ -23,12 +23,14 @@ class UsersController extends \App\Controller\Api\AppController
             /** @var User $entity */
             $entity = $result->getData();
             $expireTime = time() + 3600;
+            $tokenJwt = JWT::encode([
+                'sub' => $entity->getOriginalData(),
+                'exp' => $expireTime
+            ],Security::getSalt());
+            $this->Users->updateUserToken($entity, $tokenJwt);
             return $this->responseWithJson([
                 'token_type' => 'bearer',
-                'token' => JWT::encode([
-                    'sub' => $entity->getOriginalData(),
-                    'exp' => $expireTime
-                ],Security::getSalt()),
+                'token' => $tokenJwt,
                 'token_expire' => $expireTime,
                 'data' => [
                     'id' => $entity->getIdentifier(),
