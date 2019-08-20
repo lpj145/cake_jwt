@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap');
+
+html {
+    font-family: 'Nunito', sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.error-notfound {
+    color: #797979;
+    font-size: 2em;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10%;
+}

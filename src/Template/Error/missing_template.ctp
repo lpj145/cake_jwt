@@ -1,6 +1,6 @@
 <?php
     $this->layout= 'error';
-    $this->assign('title', "404");
+$this->assign('title', "404");
 ?>
 
 <div style="width: 100%;height: auto;text-align: center;">

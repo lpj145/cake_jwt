@@ -22,8 +22,7 @@
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('server.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -31,16 +30,11 @@
 </head>
 <body>
     <div id="container">
-        <div id="header">
-            <h1><?= __('Error') ?></h1>
-        </div>
         <div id="content">
-            <?= $this->Flash->render() ?>
-
-            <?= $this->fetch('content') ?>
-        </div>
-        <div id="footer">
-            <?= $this->Html->link(__('Back'), 'javascript:history.back()') ?>
+            <div style="width: 100%;height: auto;text-align: center;">
+                <h3 class="error-notfound">Something wrong! is bad :(</h3>
+                <img src="/img/under_construction.svg" style="max-width: 100%;" />
+            </div>
         </div>
     </div>
 </body>

@@ -1,4 +1,4 @@
-.disabled a,
+  .disabled a,
 a.disabled {
     pointer-events: none;
 }
