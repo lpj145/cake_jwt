@@ -58,7 +58,7 @@ class CreateUsers extends AbstractMigration
         $table->addTimestamps();
         $table->addIndex(['username'], ['unique' => true]);
         $table->addIndex(['token'], ['unique' => true]);
-        $table->addIndex(['token_old'], ['unique' => true]);
+        $table->addIndex(['token_old'], ['unique' => false]);
         $table->addIndex(['phone'], ['unique' => true]);
         $table->create();
     }
