@@ -25,6 +25,7 @@ use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Tuupola\Middleware\CorsMiddleware;
 
 /**
  * Application setup class.
@@ -95,7 +96,22 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime')
             ]))
-
+            ->add(new CorsMiddleware([
+                'origin' => ['*'],
+                'methods' => ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+                'headers.allow' => ['Authorization', 'Content-Type'],
+                'headers.expose' => ['X-Auth-token'],
+                'credentials' => true,
+                'cache' => 0,
+                'error' => function($request, $response, $arguments) {
+                    $data["status"] = "error";
+                    $data["message"] = $arguments["message"];
+                    return $response
+                        ->withHeader("Content-Type", "application/json")
+                        ->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT))
+                        ;
+                }
+            ]))
             // Add routing middleware.
             // If you have a large number of routes connected, turning on routes
             // caching in production could improve performance. For that when
