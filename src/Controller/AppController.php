@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\Controller\Controller;
+use Cake\Core\Configure;
 use Cake\Event\Event;
 
 /**
@@ -49,15 +50,48 @@ class AppController extends Controller
 
         $this->loadComponent('Authentication.Authentication');
 
-        $this->Authentication->allowUnauthenticated(['ping', 'token', 'debug']);
+        $this->Authentication->allowUnauthenticated(['token']);
+
+        if (Configure::read('debug')) {
+            $this->Authentication->allowUnauthenticated(['debug']);
+        }
     }
 
-    public function withJson($data, $status = 200)
+    /**
+     * @param $data
+     * @param int $status
+     * @return \Cake\Http\Response
+     */
+    protected function withJson($data, $status = 200)
     {
         return $this->response
             ->withStatus($status)
             ->withType('application/json')
             ->withStringBody(json_encode($data))
         ;
+    }
+
+    /**
+     * @param $data
+     * @return \Cake\Http\Response
+     */
+    protected function responseWithSuccess($data)
+    {
+        return $this->withJson([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
+
+    /**
+     * @param $data
+     * @return \Cake\Http\Response
+     */
+    protected function responseWithError($data)
+    {
+        return $this->withJson([
+            'success' => false,
+            'data' => $data
+        ]);
     }
 }

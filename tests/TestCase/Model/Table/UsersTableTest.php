@@ -61,6 +61,26 @@ class UsersTableTest extends TestCase
     }
 
     /**
+     * Test addUserOrFail method
+     *
+     * @return void
+     */
+    public function testAddUserOrFail()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test updateUserToken method
+     *
+     * @return void
+     */
+    public function testUpdateUserToken()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test validationDefault method
      *
      * @return void

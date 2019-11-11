@@ -47,6 +47,6 @@ class CompaniesFixture extends TestFixture
                 'updated_at' => 1573426653
             ],
         ];
-        parent::init();
+//        parent::init();
     }
 }

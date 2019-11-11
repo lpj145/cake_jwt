@@ -63,6 +63,6 @@ class UsersFixture extends TestFixture
                 'updated_at' => 1573424518
             ],
         ];
-        parent::init();
+//        parent::init();
     }
 }

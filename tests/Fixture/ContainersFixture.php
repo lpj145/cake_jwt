@@ -49,6 +49,6 @@ class ContainersFixture extends TestFixture
                 'updated_at' => 1573426645
             ],
         ];
-        parent::init();
+//        parent::init();
     }
 }

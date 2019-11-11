@@ -47,6 +47,9 @@ use Cake\Routing\Route\DashedRoute;
 
 Router::scope('/', function (RouteBuilder $routes) {
 
+    $routes->registerMiddleware('bodyparser', new \Cake\Http\Middleware\BodyParserMiddleware());
+    $routes->applyMiddleware('bodyparser');
+
     $routes->get('/debug', ['controller' => 'Error', 'action' => 'debug']);
 
     $routes->get('/ping', ['controller' => 'Users', 'action' => 'ping']);
